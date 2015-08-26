@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>react-displace demo</title>
+
+  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="A demo of react-displace">
+</head>
+<body>
+
+  <h1>
+    react-displace demo
+  </h1>
+
+  <p>
+    react-displace is a higher order function that makes any given React component render into the document's <code>body</code> or some other arbitrary DOM node instead of into its normal place within the React element tree.
+  </p>
+
+  <p>
+    <span style='font-size:2em;vertical-align:middle;'>&#9756;</span>
+    <a href="https://github.com/davidtheclark/react-displace" style='vertical-align:middle;'>Return to the repository.</a>
+  </p>
+
+  <div class="container">
+    <h2>
+      React apps are attached within here
+    </h2>
+    <p>
+      But you'll see that they control (mount, unmount, and update the state of) React elements <em>outside</em> this DOM node.
+    </p>
+    <div class="container">
+      <h3>
+        Demo One
+      </h3>
+      <p>
+        This displaced element should appear at the bottom of the page.
+      </p>
+      <div id="demo-one"></div>
+    </div>
+    <div class="container">
+      <h3>
+        Demo Two
+      </h3>
+      <p>
+        This displaced element should appear in the Demo Two Displacement Container.
+      </p>
+      <div id="demo-two"></div>
+    </div>
+    <div class="container">
+      <h3>
+        Demo Three
+      </h3>
+      <p>
+        This displaced element should appear in the Demo Three Displacement Container.
+      </p>
+      <div id="demo-three"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>
+      Demo Two Displacement Container
+    </h2>
+    <p>
+      demo-two's displaced element will be attached in here
+    </p>
+    <div id="demo-two-displaced"></div>
+  </div>
+
+  <div class="container">
+    <h2>
+      Demo Three Displacement Container
+    </h2>
+    <p>
+      demo-three's displaced element will be attached in here
+    </p>
+    <div id="demo-three-displaced"></div>
+  </div>
+
+  <script src="demo-bundle.js"></script>
+</body>
+</html>
