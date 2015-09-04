@@ -1,10 +1,8 @@
 # react-displace
 
-A higher order component that displaces *your* component into a remote region of the DOM. When your component mounts, it renders to the `document.body` or to any other arbitrary DOM node, instead of it's expected place within its React component tree; but it still maintains its normal life cycle within the tree, mounting, updating, and unmounting as expected.
+A higher order component that displaces *your* component into a remote region of the DOM. When your component mounts, it renders to the `document.body` or to any other arbitrary DOM node, instead of its expected place within its React component tree; but it still maintains its normal life cycle within the tree, mounting, updating, and unmounting as expected.
 
-This is useful when the HTML source order enforced by React's component tree won't serve your purposes.
-
-For example, if initialization and props for a modal or an obstructive overlay (e.g. "Loading...") will come from some component deeply nested within you app, but you want to render the modal or overlay as a direct child of `document.body` so that you can easily `position` it and set its `z-index`.
+This is useful when the HTML source order enforced by React's component tree won't serve your purposes. For example: if initialization and props for a modal or an obstructive overlay (e.g. "Loading...") will come from some component deeply nested within you app, but you want to render the modal or overlay as a direct child of `document.body` so that you can easily `position` it and set its `z-index`.
 
 ## Installation
 
