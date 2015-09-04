@@ -12,6 +12,10 @@ For example, if initialization and props for a modal or an obstructive overlay (
 npm install react-displace
 ```
 
+Dependencies: React 0.13.x
+
+You'll need to building CommonJS, too.
+
 ## Usage
 
 react-displace is a "higher order component": a function that takes your component as an argument and returns a new component that includes your component wrapped in some special functionality.
@@ -109,4 +113,6 @@ What ends up rendering should look something like this:
 
 ## Caveats
 
-I don't think `React.findDOMNode()` always works on the displaced element — which is not surprising.
+- I don't think `React.findDOMNode()` always works on the displaced element — which is not surprising.
+- If there is no `document` (e.g. using `React.renderToString()` server-side), this thing won't work,
+  so it just returns a component that renders nothing. You'll have to initiate it when there is a `document`.

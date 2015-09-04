@@ -1,6 +1,10 @@
 var React = require('react');
 
 module.exports = function(Content, options) {
+  if (!global.document) return React.createClass({
+    render: function() { return false; },
+  });
+
   options = options || {};
   var container = (function() {
     if (!options.renderTo) {
