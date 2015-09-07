@@ -4,6 +4,8 @@ A higher order component that displaces *your* component into a remote region of
 
 This is useful when the HTML source order enforced by React's component tree won't serve your purposes. For example: if initialization and props for a modal or an obstructive overlay (e.g. "Loading...") will come from some component deeply nested within you app, but you want to render the modal or overlay as a direct child of `document.body` so that you can easily `position` it and set its `z-index`.
 
+[Check out the demo.](http://davidtheclark.github.io/react-displace/demo/)
+
 ## Installation
 
 ```
