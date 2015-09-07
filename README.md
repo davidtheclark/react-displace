@@ -117,6 +117,12 @@ What ends up rendering should look something like this:
 </div>
 ```
 
+## Development
+
+Lint with `npm run lint`.
+
+Test with `npm run test-dev`, which will give you a URL to open in your browser. Look at the console log for TAP output.
+
 ## Caveats
 
 - I don't think `React.findDOMNode()` always works on the displaced element — which is not surprising.
