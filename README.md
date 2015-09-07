@@ -1,4 +1,4 @@
-# react-displace
+# react-displace [![Build Status](https://travis-ci.org/davidtheclark/react-displace.svg?branch=zuul-testing)](https://travis-ci.org/davidtheclark/react-displace)
 
 A higher order component that displaces *your* component into a remote region of the DOM. When your component mounts, it renders to the `document.body` or to any other arbitrary DOM node, instead of its expected place within its React component tree; but it still maintains its normal life cycle within the tree, mounting, updating, and unmounting as expected.
 
@@ -13,6 +13,12 @@ npm install react-displace
 Dependencies: React 0.13.x
 
 You'll need to building CommonJS, too.
+
+## Tested Browser Support
+
+Basically IE9+. See `.zuul.yml` for more details.
+
+Automated testing is done with [zuul](https://github.com/defunctzombie/zuul) and [Open Suace](https://saucelabs.com/opensauce/).
 
 ## Usage
 
