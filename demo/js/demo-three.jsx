@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var displace = require('../../');
 
 var AppendedToNodeInner = React.createClass({
@@ -62,4 +63,4 @@ var DemoThree = React.createClass({
   },
 });
 
-React.render(<DemoThree />, document.getElementById('demo-three'));
+ReactDOM.render(<DemoThree />, document.getElementById('demo-three'));

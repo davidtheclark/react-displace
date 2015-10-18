@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var displace = require('../../');
 
 var AppendedToBody = displace(React.createClass({
@@ -58,4 +59,4 @@ var DemoOne = React.createClass({
   },
 });
 
-React.render(<DemoOne />, document.getElementById('demo-one'));
+ReactDOM.render(<DemoOne />, document.getElementById('demo-one'));

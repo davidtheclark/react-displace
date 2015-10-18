@@ -1,8 +1,8 @@
-var React = require('react/addons');
+var React = require('react');
+var ReactDOM = require('react-dom');
+var TestUtils = require('react-addons-test-utils');
 var displace = require('..');
 var test = require('tape');
-
-var TestUtils = React.addons.TestUtils;
 
 var mainContainer = document.createElement('div');
 document.body.appendChild(mainContainer);
@@ -57,13 +57,12 @@ function mountTestElement() {
     },
   });
 
-  var elementParentElement = React.render(<ElementParent />, mainContainer);
-  var appendedToBodyElement = TestUtils.findRenderedComponentWithType(elementParentElement, AppendedToNode);
+  ReactDOM.render(<ElementParent />, mainContainer);
   return document.getElementById('appended-to-node');
 }
 
 function unmountTestElement() {
-  React.unmountComponentAtNode(mainContainer);
+  ReactDOM.unmountComponentAtNode(mainContainer);
 }
 
 test('appended-to-node displaced element appended to node', function(t) {
@@ -98,7 +97,7 @@ test('appended-to-node displaced element unmounts when parent unmounts', functio
 });
 
 test('appended-to-node displaced element unmounts and mounts via `mounted` prop', function(t) {
-  var displacedNode = mountTestElement();
+  mountTestElement();
   t.ok(document.getElementById('appended-to-node'));
   t.equal(
     document.getElementById('appended-to-node').parentNode,

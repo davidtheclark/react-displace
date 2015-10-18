@@ -1,5 +1,9 @@
 # Changelog
 
+## Head
+
+- Upgrade to React 0.14 and its companion ReactDOM.
+
 ## 1.0.1
 
 - Try to deal with possible lack of `document` in server-side React.

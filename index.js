@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 
 module.exports = function(Content, options) {
   if (!global.document) return React.createClass({
@@ -48,14 +49,14 @@ module.exports = function(Content, options) {
     },
 
     renderDisplaced: function() {
-      React.render(
+      ReactDOM.render(
         React.createElement(Content, this.props, this.props.children),
         container
       );
     },
 
     removeDisplaced: function() {
-      React.unmountComponentAtNode(container);
+      ReactDOM.unmountComponentAtNode(container);
     },
 
     render: function() {

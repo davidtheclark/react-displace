@@ -12,9 +12,16 @@ This is useful when the HTML source order enforced by React's component tree won
 npm install react-displace
 ```
 
+You'll need to building CommonJS.
+
+### React Dependency
+
+Version 2+ is compatible with React 0.14.x.
+
+Version 1+ is compatible with React 0.13.x.
+
 Dependencies: React 0.13.x
 
-You'll need to building CommonJS, too.
 
 ## Tested Browser Support
 
@@ -125,6 +132,6 @@ Test with `npm run test-dev`, which will give you a URL to open in your browser.
 
 ## Caveats
 
-- I don't think `React.findDOMNode()` always works on the displaced element — which is not surprising.
-- If there is no `document` (e.g. using `React.renderToString()` server-side), this thing won't work,
+- I don't think `ReactDOM.findDOMNode()` always works on the displaced element — which is not surprising.
+- If there is no `document` (e.g. using `ReactDOMServer.renderToString()` server-side), this thing won't work,
   so it just returns a component that renders nothing. You'll have to initiate it when there is a `document`.
