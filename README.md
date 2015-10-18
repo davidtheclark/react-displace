@@ -20,9 +20,6 @@ Version 2+ is compatible with React 0.14.x.
 
 Version 1+ is compatible with React 0.13.x.
 
-Dependencies: React 0.13.x
-
-
 ## Tested Browser Support
 
 Basically IE9+. See `.zuul.yml` for more details.
