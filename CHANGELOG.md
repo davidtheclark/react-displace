@@ -1,5 +1,9 @@
 # Changelog
 
+## Head
+
+- Move container creation into `componentWillMount()`.
+
 ## 2.0.0
 
 - Upgrade to React 0.14 and its companion ReactDOM.
