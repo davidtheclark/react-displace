@@ -7,17 +7,6 @@ module.exports = function(Content, options) {
   });
 
   options = options || {};
-  var container = (function() {
-    if (!options.renderTo) {
-      var result = document.createElement('div');
-      document.body.appendChild(result);
-      return result;
-    } else if (typeof options.renderTo === 'string') {
-      return document.querySelector(options.renderTo);
-    } else {
-      return options.renderTo;
-    }
-  }());
 
   return React.createClass({
     propTypes: {
@@ -28,6 +17,20 @@ module.exports = function(Content, options) {
       return {
         mounted: true,
       };
+    },
+
+    componentWillMount: function() {
+      this.container = (function() {
+        if (!options.renderTo) {
+          var result = document.createElement('div');
+          document.body.appendChild(result);
+          return result;
+        } else if (typeof options.renderTo === 'string') {
+          return document.querySelector(options.renderTo);
+        } else {
+          return options.renderTo;
+        }
+      }());
     },
 
     componentDidMount: function() {
@@ -51,12 +54,12 @@ module.exports = function(Content, options) {
     renderDisplaced: function() {
       ReactDOM.render(
         React.createElement(Content, this.props, this.props.children),
-        container
+        this.container
       );
     },
 
     removeDisplaced: function() {
-      ReactDOM.unmountComponentAtNode(container);
+      ReactDOM.unmountComponentAtNode(this.container);
     },
 
     render: function() {
