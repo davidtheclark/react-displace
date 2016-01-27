@@ -13,17 +13,26 @@ document.body.appendChild(appendToMe);
 
 function mountTestElement() {
   var AppendedToNodeInner = React.createClass({
+    contextTypes: {
+      test: React.PropTypes.string,
+    },
     propTypes: {
       status: React.PropTypes.string.isRequired,
     },
     render: function() {
-      return <div id='appended-to-node'>status: {this.props.status}</div>
+      return <div id='appended-to-node' data-context={this.context.test}>status: {this.props.status}</div>
     },
   });
 
   var AppendedToNode = displace(AppendedToNodeInner, { renderTo: '#append-to-me' });
 
   var ElementParent = React.createClass({
+    childContextTypes: {
+      test: React.PropTypes.string,
+    },
+    getChildContext: function() {
+      return {test: 'This is a test'};
+    },
     getInitialState: function() {
       return {
         input: 'nothing',
@@ -113,6 +122,18 @@ test('appended-to-node displaced element unmounts and mounts via `mounted` prop'
   t.equal(
     document.getElementById('appended-to-node').parentNode,
     document.getElementById('append-to-me')
+  );
+  unmountTestElement();
+
+  t.end();
+});
+
+test('appended-to-node displaced component gets context from parent', function(t) {
+  mountTestElement();
+  t.ok(document.getElementById('appended-to-node'));
+  t.equal(
+    document.getElementById('appended-to-node').dataset.context,
+    'This is a test'
   );
   unmountTestElement();
 

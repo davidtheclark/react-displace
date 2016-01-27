@@ -52,7 +52,8 @@ module.exports = function(Content, options) {
     },
 
     renderDisplaced: function() {
-      ReactDOM.render(
+      ReactDOM.unstable_renderSubtreeIntoContainer(
+        this,
         React.createElement(Content, this.props, this.props.children),
         this.container
       );
