@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "demo-bundle": "browserify demo/js -t babelify --extension=.jsx -o demo/demo-bundle.js",
-    "demo-watch": "watchify demo/js -d -t babelify --extension=.jsx -o demo/demo-bundle.js",
-    "demo-bs": "browser-sync start --server demo --files=\"demo/**/*.css,demo/index.html,demo/demo-bundle.js\"",
-    "demo-dev": "parallelshell \"npm run demo-watch\" \"npm run demo-bs\"",
+    "demo-watch": "watchify demo/js -v -d -t babelify --extension=.jsx -o demo/demo-bundle.js",
+    "demo-dev": "npm run demo-watch & http-server demo",
     "lint": "eslint .",
     "test-dev": "zuul --local 8080 --open -- test/index.js",
     "pretest": "npm run lint",
@@ -30,15 +29,14 @@
   "devDependencies": {
     "babel-preset-react": "6.3.13",
     "babelify": "7.2.0",
-    "browser-sync": "2.10.1",
-    "browserify": "12.0.1",
+    "browserify": "13.0.0",
     "eslint": "1.10.3",
-    "eslint-plugin-react": "3.12.0",
-    "parallelshell": "2.0.0",
-    "react-addons-test-utils": "0.14.3",
-    "tape": "4.2.2",
-    "watchify": "3.6.1",
-    "zuul": "3.8.0"
+    "eslint-plugin-react": "3.16.1",
+    "http-server": "0.8.5",
+    "react-addons-test-utils": "0.14.7",
+    "tape": "4.4.0",
+    "watchify": "3.7.0",
+    "zuul": "3.9.0"
   },
   "babel": {
     "presets": [
