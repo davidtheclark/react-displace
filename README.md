@@ -30,7 +30,7 @@ Automated testing is done with [zuul](https://github.com/defunctzombie/zuul) and
 
 react-displace is a "higher order component": a function that takes your component as an argument and returns a new component that includes your component wrapped in some special functionality.
 
-It has a simple signature
+It has a simple signature:
 
 ```js
 displace(YourComponent[, options])
@@ -129,8 +129,11 @@ Lint with `npm run lint`.
 
 Test with `npm run test-dev`, which will give you a URL to open in your browser. Look at the console log for TAP output.
 
+## Questions with Answers
+
+- **Will my displaced element understand the `context` from its React element tree?** Yes!
+
 ## Caveats
 
-- I don't think `ReactDOM.findDOMNode()` always works on the displaced element — which is not surprising.
 - If there is no `document` (e.g. using `ReactDOMServer.renderToString()` server-side), this thing won't work,
   so it just returns a component that renders nothing. You'll have to initiate it when there is a `document`.

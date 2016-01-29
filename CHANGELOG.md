@@ -1,6 +1,6 @@
 # Changelog
 
-## Head
+## 2.1.0
 
 - Allow React `context` to pass to displaced element.
 
