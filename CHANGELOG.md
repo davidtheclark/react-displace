@@ -1,5 +1,9 @@
 # Changelog
 
+## Head
+
+- Allow React `context` to pass to displaced element.
+
 ## 2.0.1
 
 - Move container creation into `componentWillMount()`.
