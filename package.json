@@ -1,6 +1,6 @@
 {
   "name": "react-displace",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A higher order component that displaces your component into a remote region of the DOM",
   "main": "index.js",
   "scripts": {

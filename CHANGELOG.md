@@ -1,6 +1,6 @@
 # Changelog
 
-## Head
+## 2.1.1
 
 - Move `react` and `react-dom` to `peerDependencies`.
 
