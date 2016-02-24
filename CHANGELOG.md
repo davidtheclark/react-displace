@@ -1,5 +1,9 @@
 # Changelog
 
+## Head
+
+- Move `react` and `react-dom` to `peerDependencies`.
+
 ## 2.1.0
 
 - Allow React `context` to pass to displaced element.
