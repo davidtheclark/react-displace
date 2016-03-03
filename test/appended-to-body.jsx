@@ -107,3 +107,16 @@ test('appended-to-body displaced element unmounts and mounts via `mounted` prop'
 
   t.end();
 });
+
+test('appended-to-body displaced element cleans up its container div when it unmounts', function(t) {
+  mountTestElement();
+  t.ok(document.getElementById('appended-to-body'));
+
+  var containerDiv = document.getElementById('appended-to-body').parentNode;
+  t.equal(containerDiv.parentNode, document.body);
+
+  unmountTestElement();
+  t.equal(containerDiv.parentNode, null);
+
+  t.end();
+});

@@ -49,6 +49,10 @@ module.exports = function(Content, options) {
 
     componentWillUnmount: function() {
       this.removeDisplaced();
+
+      if (!options.renderTo) {
+        this.container.parentNode.removeChild(this.container);
+      }
     },
 
     renderDisplaced: function() {
