@@ -1,6 +1,6 @@
 # Changelog
 
-## Head
+## 2.1.2
 
 - Clean up anonymous container `<div>` when unmounting.
 
