@@ -1,5 +1,9 @@
 # Changelog
 
+## Head
+
+- Clean up anonymous container `<div>` when unmounting.
+
 ## 2.1.1
 
 - Move `react` and `react-dom` to `peerDependencies`.
