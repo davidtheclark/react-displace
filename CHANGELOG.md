@@ -1,5 +1,8 @@
 # Changelog
 
+## Head
+- Allow React 15 as peer dependency.
+
 ## 2.1.2
 
 - Clean up anonymous container `<div>` when unmounting.
