@@ -9,7 +9,7 @@
     "predemo-dev": "npm run build",
     "demo-dev": "npm run demo-watch & http-server demo",
     "lint": "eslint .",
-    "format": "prettier --single-quote --write index.js test/*.js demo/js/*.js",
+    "format": "prettier --single-quote --write src/*.js test/*.js demo/js/*.js",
     "pretest": "npm run lint && npm run build",
     "build": "babel src/displace.js > dist/displace.js",
     "test": "zuul -- test/index.js",

@@ -9,7 +9,7 @@ function displace(Content, options) {
       render() {
         return false;
       }
-    }
+    };
   }
 
   options = options || {};
