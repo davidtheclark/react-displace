@@ -1,13 +1,9 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var displace = require('../../');
+const React = require('react');
+const ReactDOM = require('react-dom');
+const displace = require('../../dist/displace');
 
-var AppendedToBody = displace(React.createClass({
-  propTypes: {
-    number: React.PropTypes.number.isRequired,
-  },
-
-  render: function() {
+let AppendedToBody = displace(class AppendedToBody extends React.Component {
+  render() {
     return (
       <div className='container'>
         <h2>
@@ -22,26 +18,24 @@ var AppendedToBody = displace(React.createClass({
         </p>
       </div>
     )
-  },
-}));
+  }
+});
 
-var DemoOne = React.createClass({
-  getInitialState: function() {
-    return {
-      displacedNumber: 0,
-      displacedMounted: false,
-    };
-  },
+class DemoOne extends React.Component {
+  state = {
+    displacedNumber: 0,
+    displacedMounted: false,
+  };
 
-  toggleDisplaced: function() {
+  toggleDisplaced = () => {
     this.setState({ displacedMounted: !this.state.displacedMounted });
-  },
+  };
 
-  incrementDisplaced: function() {
+  incrementDisplaced = () => {
     this.setState({ displacedNumber: this.state.displacedNumber + 1 });
-  },
+  };
 
-  render: function() {
+  render() {
     return (
       <div>
         <button onClick={this.toggleDisplaced}>
@@ -56,7 +50,7 @@ var DemoOne = React.createClass({
         />
       </div>
     );
-  },
-});
+  }
+}
 
 ReactDOM.render(<DemoOne />, document.getElementById('demo-one'));

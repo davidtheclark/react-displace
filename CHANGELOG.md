@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.0
+
+- Introduce `dist/displace.js`, where `src/` now compiles to, since React 15.5+ demands `class`es, so Babel-compilation.
+
 ## 2.1.3
 
 - Allow React 15 as peer dependency.

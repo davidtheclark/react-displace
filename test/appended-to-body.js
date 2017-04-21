@@ -1,55 +1,44 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var TestUtils = require('react-addons-test-utils');
-var displace = require('..');
-var test = require('tape');
+const React = require('react');
+const ReactDOM = require('react-dom');
+const TestUtils = require('react-dom/test-utils');
+const displace = require('../dist/displace');
+const test = require('tape');
 
-var mainContainer = document.createElement('div');
+const mainContainer = document.createElement('div');
 document.body.appendChild(mainContainer);
 
 function mountTestElement() {
-  var AppendedToBody = displace(React.createClass({
-    propTypes: {
-      status: React.PropTypes.string.isRequired,
-    },
-    render: function() {
-      return <div id='appended-to-body'>status: {this.props.status}</div>
-    },
-  }));
+  let AppendedToBody = class AppendedToBody extends React.Component {
+    render() {
+      return <div id="appended-to-body">status: {this.props.status}</div>;
+    }
+  };
+  AppendedToBody = displace(AppendedToBody);
 
-  var ElementParent = React.createClass({
-    getInitialState: function() {
-      return {
-        input: 'nothing',
-        displacedMounted: true,
-      };
-    },
-    changeInput: function(e) {
+  class ElementParent extends React.Component {
+    state = {
+      input: 'nothing',
+      displacedMounted: true
+    };
+
+    changeInput = e => {
       this.setState({ input: e.target.value });
-    },
-    toggleMountedness: function() {
+    };
+
+    toggleMountedness = () => {
       this.setState({ displacedMounted: !this.state.displacedMounted });
-    },
-    render: function() {
+    };
+
+    render() {
       return (
-        <div id='element-parent'>
-          <input
-            id='atb-status-changer'
-            onChange={this.changeInput}
-            currentValue={this.state.input}
-          />
-          <button
-            id='atb-toggle-mountedness'
-            onClick={this.toggleMountedness}
-          />
-          <AppendedToBody
-            status={this.state.input}
-            mounted={this.state.displacedMounted}
-          />
+        <div id="element-parent">
+          <input id="atb-status-changer" onChange={this.changeInput} value={this.state.input} />
+          <button id="atb-toggle-mountedness" onClick={this.toggleMountedness} />
+          <AppendedToBody status={this.state.input} mounted={this.state.displacedMounted} />
         </div>
-      )
-    },
-  });
+      );
+    }
+  }
 
   ReactDOM.render(<ElementParent />, mainContainer);
   return document.getElementById('appended-to-body');
@@ -60,7 +49,7 @@ function unmountTestElement() {
 }
 
 test('appended-to-body displaced element appended to body', function(t) {
-  var displacedNode = mountTestElement();
+  const displacedNode = mountTestElement();
   t.notOk(displacedNode.parentNode === document.getElementById('element-parent'));
   t.equal(displacedNode.parentNode.tagName, 'DIV');
   t.equal(displacedNode.parentNode.parentNode, document.body);
@@ -70,10 +59,10 @@ test('appended-to-body displaced element appended to body', function(t) {
 });
 
 test('appended-to-body displaced element updates state', function(t) {
-  var displacedNode = mountTestElement();
+  const displacedNode = mountTestElement();
   t.equal(displacedNode.textContent, 'status: nothing');
 
-  var statusChanger = document.getElementById('atb-status-changer');
+  const statusChanger = document.getElementById('atb-status-changer');
   statusChanger.value = 'something';
   TestUtils.Simulate.change(statusChanger);
   t.equal(displacedNode.textContent, 'status: something');
@@ -96,7 +85,7 @@ test('appended-to-body displaced element unmounts and mounts via `mounted` prop'
   t.ok(document.getElementById('appended-to-body'));
   t.equal(document.getElementById('appended-to-body').parentNode.parentNode, document.body);
 
-  var toggleMountednessButton = document.getElementById('atb-toggle-mountedness');
+  const toggleMountednessButton = document.getElementById('atb-toggle-mountedness');
   TestUtils.Simulate.click(toggleMountednessButton);
   t.notOk(document.getElementById('appended-to-body'));
 
@@ -112,7 +101,7 @@ test('appended-to-body displaced element cleans up its container div when it unm
   mountTestElement();
   t.ok(document.getElementById('appended-to-body'));
 
-  var containerDiv = document.getElementById('appended-to-body').parentNode;
+  const containerDiv = document.getElementById('appended-to-body').parentNode;
   t.equal(containerDiv.parentNode, document.body);
 
   unmountTestElement();
