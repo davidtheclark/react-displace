@@ -1,8 +1,9 @@
 # Changelog
 
-## 2.2.0
+## 2.1.4
 
 - Introduce `dist/displace.js`, where `src/` now compiles to, since React 15.5+ demands `class`es, so Babel-compilation.
+  Which is actually a huge overhaul, though in semver it's just a patch.
 
 ## 2.1.3
 
