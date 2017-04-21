@@ -14,12 +14,16 @@ let AppendedToNode = class AppendedToNode extends React.Component {
         </p>
         <p>
           And I still update correctly.
-          You've clicked "increment demo-two displaced number" {this.props.number} time(s).
+          You've clicked "increment demo-two displaced number"
+          {' '}
+          {this.props.number}
+          {' '}
+          time(s).
         </p>
       </div>
     );
   }
-}
+};
 
 AppendedToNode = displace(AppendedToNode, { renderTo: '#demo-two-displaced' });
 
@@ -46,7 +50,10 @@ class DemoTwo extends React.Component {
         <button onClick={this.incrementDisplaced}>
           increment demo-two displaced number
         </button>
-        <AppendedToNode number={this.state.displacedNumber} mounted={this.state.displacedMounted} />
+        <AppendedToNode
+          number={this.state.displacedNumber}
+          mounted={this.state.displacedMounted}
+        />
       </div>
     );
   }

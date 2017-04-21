@@ -32,9 +32,19 @@ function mountTestElement() {
     render() {
       return (
         <div id="element-parent">
-          <input id="atb-status-changer" onChange={this.changeInput} value={this.state.input} />
-          <button id="atb-toggle-mountedness" onClick={this.toggleMountedness} />
-          <AppendedToBody status={this.state.input} mounted={this.state.displacedMounted} />
+          <input
+            id="atb-status-changer"
+            onChange={this.changeInput}
+            value={this.state.input}
+          />
+          <button
+            id="atb-toggle-mountedness"
+            onClick={this.toggleMountedness}
+          />
+          <AppendedToBody
+            status={this.state.input}
+            mounted={this.state.displacedMounted}
+          />
         </div>
       );
     }
@@ -50,7 +60,9 @@ function unmountTestElement() {
 
 test('appended-to-body displaced element appended to body', function(t) {
   const displacedNode = mountTestElement();
-  t.notOk(displacedNode.parentNode === document.getElementById('element-parent'));
+  t.notOk(
+    displacedNode.parentNode === document.getElementById('element-parent')
+  );
   t.equal(displacedNode.parentNode.tagName, 'DIV');
   t.equal(displacedNode.parentNode.parentNode, document.body);
 
@@ -71,7 +83,9 @@ test('appended-to-body displaced element updates state', function(t) {
   t.end();
 });
 
-test('appended-to-body displaced element unmounts when parent unmounts', function(t) {
+test('appended-to-body displaced element unmounts when parent unmounts', function(
+  t
+) {
   mountTestElement();
   t.ok(document.getElementById('appended-to-body'));
   unmountTestElement();
@@ -80,24 +94,36 @@ test('appended-to-body displaced element unmounts when parent unmounts', functio
   t.end();
 });
 
-test('appended-to-body displaced element unmounts and mounts via `mounted` prop', function(t) {
+test('appended-to-body displaced element unmounts and mounts via `mounted` prop', function(
+  t
+) {
   mountTestElement();
   t.ok(document.getElementById('appended-to-body'));
-  t.equal(document.getElementById('appended-to-body').parentNode.parentNode, document.body);
+  t.equal(
+    document.getElementById('appended-to-body').parentNode.parentNode,
+    document.body
+  );
 
-  const toggleMountednessButton = document.getElementById('atb-toggle-mountedness');
+  const toggleMountednessButton = document.getElementById(
+    'atb-toggle-mountedness'
+  );
   TestUtils.Simulate.click(toggleMountednessButton);
   t.notOk(document.getElementById('appended-to-body'));
 
   TestUtils.Simulate.click(toggleMountednessButton);
   t.ok(document.getElementById('appended-to-body'));
-  t.equal(document.getElementById('appended-to-body').parentNode.parentNode, document.body);
+  t.equal(
+    document.getElementById('appended-to-body').parentNode.parentNode,
+    document.body
+  );
   unmountTestElement();
 
   t.end();
 });
 
-test('appended-to-body displaced element cleans up its container div when it unmounts', function(t) {
+test('appended-to-body displaced element cleans up its container div when it unmounts', function(
+  t
+) {
   mountTestElement();
   t.ok(document.getElementById('appended-to-body'));
 
