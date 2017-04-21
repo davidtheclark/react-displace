@@ -16,7 +16,7 @@ You'll need to building CommonJS.
 
 ### React Dependency
 
-Version 2+ is compatible with React 0.14.x.
+Version 2+ is compatible with React >=0.14.x.
 
 Version 1+ is compatible with React 0.13.x.
 

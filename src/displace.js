@@ -1,26 +1,26 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+'use strict';
 
-module.exports = function(Content, options) {
-  if (!global.document) return React.createClass({
-    render: function() { return false; },
-  });
+const React = require('react');
+const ReactDOM = require('react-dom');
+
+function displace(Content, options) {
+  if (!global.document) {
+    return class EmptyDisplace extends React.Component {
+      render() {
+        return false;
+      }
+    }
+  }
 
   options = options || {};
 
-  return React.createClass({
-    propTypes: {
-      mounted: React.PropTypes.bool,
-    },
+  class Displaced extends React.Component {
+    static defaultProps = {
+      mounted: true
+    };
 
-    getDefaultProps: function() {
-      return {
-        mounted: true,
-      };
-    },
-
-    componentWillMount: function() {
-      this.container = (function() {
+    componentWillMount() {
+      this.container = (() => {
         if (!options.renderTo) {
           var result = document.createElement('div');
           document.body.appendChild(result);
@@ -30,45 +30,49 @@ module.exports = function(Content, options) {
         } else {
           return options.renderTo;
         }
-      }());
-    },
+      })();
+    }
 
-    componentDidMount: function() {
+    componentDidMount() {
       if (this.props.mounted) {
         this.renderDisplaced();
       }
-    },
+    }
 
-    componentDidUpdate: function(prevProps) {
+    componentDidUpdate(prevProps) {
       if (prevProps.mounted && !this.props.mounted) {
         this.removeDisplaced();
       } else if (this.props.mounted) {
         this.renderDisplaced();
       }
-    },
+    }
 
-    componentWillUnmount: function() {
+    componentWillUnmount() {
       this.removeDisplaced();
 
       if (!options.renderTo) {
         this.container.parentNode.removeChild(this.container);
       }
-    },
+    }
 
-    renderDisplaced: function() {
+    renderDisplaced = () => {
       ReactDOM.unstable_renderSubtreeIntoContainer(
         this,
         React.createElement(Content, this.props, this.props.children),
         this.container
       );
-    },
+    };
 
-    removeDisplaced: function() {
+    removeDisplaced = () => {
       ReactDOM.unmountComponentAtNode(this.container);
-    },
+    };
 
-    render: function() {
+    render() {
       return false;
-    },
-  });
+    }
+  }
+
+  return Displaced;
 }
+
+module.exports = displace;
