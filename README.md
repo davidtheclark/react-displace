@@ -1,6 +1,6 @@
-# react-displace [![Build Status](https://travis-ci.org/davidtheclark/react-displace.svg?branch=zuul-testing)](https://travis-ci.org/davidtheclark/react-displace)
+# react-displace [![Build Status](https://travis-ci.org/davidtheclark/react-displace.svg?branch=master)](https://travis-ci.org/davidtheclark/react-displace)
 
-A higher order component that displaces *your* component into a remote region of the DOM. When your component mounts, it renders to the `document.body` or to any other arbitrary DOM node, instead of its expected place within its React component tree; but it still maintains its normal life cycle within the tree, mounting, updating, and unmounting as expected.
+A higher-order component that displaces *your* component into a remote region of the DOM. When your component mounts, it renders to the `document.body` or to any other arbitrary DOM node, instead of its expected place within the React component tree; but it still maintains its normal life cycle within the tree, mounting, updating, and unmounting as expected.
 
 This is useful when the HTML source order enforced by React's component tree won't serve your purposes. For example: if initialization and props for a modal or an obstructive overlay (e.g. "Loading...") will come from some component deeply nested within you app, but you want to render the modal or overlay as a direct child of `document.body` so that you can easily `position` it and set its `z-index`.
 
@@ -12,25 +12,25 @@ This is useful when the HTML source order enforced by React's component tree won
 npm install react-displace
 ```
 
-You'll need to building CommonJS.
+You'll need to be using a bundler like Browserify, Webpack, or Rollup.
+
+`dist/displace.js` is the Babel-compiled code that you will use.
 
 ### React Dependency
 
-Version 2+ is compatible with React 0.14.x.
+Version 2+ is compatible with React >=0.14.x.
 
 Version 1+ is compatible with React 0.13.x.
 
 ## Tested Browser Support
 
-Basically IE9+. See `.zuul.yml` for more details.
-
-Automated testing is done with [zuul](https://github.com/defunctzombie/zuul) and [Open Suace](https://saucelabs.com/opensauce/).
+Basically IE9+.
 
 ## Usage
 
-react-displace is a "higher order component": a function that takes your component as an argument and returns a new component that includes your component wrapped in some special functionality.
+react-displace is a "higher-order component": a function that takes your component as an argument and returns a new component that includes your component wrapped in some special functionality.
 
-It has a simple signature
+It has a simple signature:
 
 ```js
 displace(YourComponent[, options])
@@ -51,13 +51,14 @@ If `renderTo` is a selector string, it is passed to `document.querySelector()`, 
 ### Example
 
 ```js
-var React = require('react');
-var displace = require('react-displace');
+const React = require('react');
+const displace = require('react-displace');
 
-var Foo = React.createClass({ .. });
-var FooDisplacedToBody = displace(Foo);
-var FooDisplacedToBar = displace(Foo, document.getElementById('bar'));
-var FooDisplacedToBaz = displace(Foo, '#baz');
+class Foo extends React.Component { .. }
+
+const FooDisplacedToBody = displace(Foo);
+const FooDisplacedToBar = displace(Foo, document.getElementById('bar'));
+const FooDisplacedToBaz = displace(Foo, '#baz');
 ```
 
 In the example above, you can use any `FooDisplacedTo*` exactly as you would use `Foo`; and any `props` you provide to `FooDisplacedTo*` will be passed through to its internal `Foo` component. (e.g. If `Foo` has a `prop` called `severity`, so does `FooDisplacedTo*`.)
@@ -79,17 +80,17 @@ So let's say you have the following HTML:
 And you have something like the following JS:
 
 ```js
-var React = require('react');
-var displace = require('react-displace');
+const React = require('react');
+const displace = require('react-displace');
 
-var Foo = React.createClass({ .. });
-var FooDisplacedToBody = displace(Foo);
-var FooDisplacedToBar = displace(Foo, document.getElementById('bar'));
-var FooDisplacedToBaz = displace(Foo, '#baz');
+class Foo extends React.Component { .. }
 
-var App = React.createClass({
-  ..
-  render: function() {
+const FooDisplacedToBody = displace(Foo);
+const FooDisplacedToBar = displace(Foo, document.getElementById('bar'));
+const FooDisplacedToBaz = displace(Foo, '#baz');
+
+class App extends React.Component {
+  render() {
     return (
       <div id="rendered-app">
         <Foo text='in my normal place' />
@@ -99,7 +100,7 @@ var App = React.createClass({
       </div>
     );
   },
-})
+}
 ```
 
 What ends up rendering should look something like this:
@@ -129,8 +130,11 @@ Lint with `npm run lint`.
 
 Test with `npm run test-dev`, which will give you a URL to open in your browser. Look at the console log for TAP output.
 
+## Questions with Answers
+
+- **Will my displaced element understand the `context` from its React element tree?** Yes!
+
 ## Caveats
 
-- I don't think `ReactDOM.findDOMNode()` always works on the displaced element — which is not surprising.
 - If there is no `document` (e.g. using `ReactDOMServer.renderToString()` server-side), this thing won't work,
   so it just returns a component that renders nothing. You'll have to initiate it when there is a `document`.

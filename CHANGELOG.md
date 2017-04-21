@@ -1,5 +1,26 @@
 # Changelog
 
+## 2.1.4
+
+- Introduce `dist/displace.js`, where `src/` now compiles to, since React 15.5+ demands `class`es, so Babel-compilation.
+  Which is actually a huge overhaul, though in semver it's just a patch.
+
+## 2.1.3
+
+- Allow React 15 as peer dependency.
+
+## 2.1.2
+
+- Clean up anonymous container `<div>` when unmounting.
+
+## 2.1.1
+
+- Move `react` and `react-dom` to `peerDependencies`.
+
+## 2.1.0
+
+- Allow React `context` to pass to displaced element.
+
 ## 2.0.1
 
 - Move container creation into `componentWillMount()`.

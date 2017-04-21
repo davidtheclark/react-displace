@@ -1,15 +1,11 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var displace = require('../../');
+const React = require('react');
+const ReactDOM = require('react-dom');
+const displace = require('../../dist/displace');
 
-var AppendedToNodeInner = React.createClass({
-  propTypes: {
-    number: React.PropTypes.number.isRequired,
-  },
-
-  render: function() {
+let AppendedToNode = class AppendedToNode extends React.Component {
+  render() {
     return (
-      <div className='container'>
+      <div className="container">
         <h3>
           Demo Three's Displaced Element
         </h3>
@@ -18,34 +14,36 @@ var AppendedToNodeInner = React.createClass({
         </p>
         <p>
           And I still update correctly.
-          You've clicked "increment demo-three displaced number" {this.props.number} time(s).
+          You've clicked "increment demo-three displaced number"
+          {' '}
+          {this.props.number}
+          {' '}
+          time(s).
         </p>
       </div>
-    )
-  },
+    );
+  }
+};
+
+AppendedToNode = displace(AppendedToNode, {
+  renderTo: document.getElementById('demo-three-displaced')
 });
 
-var AppendedToNode = displace(AppendedToNodeInner, {
-  renderTo: document.getElementById('demo-three-displaced'),
-});
+class DemoThree extends React.Component {
+  state = {
+    displacedNumber: 0,
+    displacedMounted: false
+  };
 
-var DemoThree = React.createClass({
-  getInitialState: function() {
-    return {
-      displacedNumber: 0,
-      displacedMounted: false,
-    };
-  },
-
-  toggleDisplaced: function() {
+  toggleDisplaced = () => {
     this.setState({ displacedMounted: !this.state.displacedMounted });
-  },
+  };
 
-  incrementDisplaced: function() {
+  incrementDisplaced = () => {
     this.setState({ displacedNumber: this.state.displacedNumber + 1 });
-  },
+  };
 
-  render: function() {
+  render() {
     return (
       <div>
         <button onClick={this.toggleDisplaced}>
@@ -60,7 +58,7 @@ var DemoThree = React.createClass({
         />
       </div>
     );
-  },
-});
+  }
+}
 
 ReactDOM.render(<DemoThree />, document.getElementById('demo-three'));

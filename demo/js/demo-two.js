@@ -1,15 +1,11 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var displace = require('../../');
+const React = require('react');
+const ReactDOM = require('react-dom');
+const displace = require('../../dist/displace');
 
-var AppendedToNodeInner = React.createClass({
-  propTypes: {
-    number: React.PropTypes.number.isRequired,
-  },
-
-  render: function() {
+let AppendedToNode = class AppendedToNode extends React.Component {
+  render() {
     return (
-      <div className='container'>
+      <div className="container">
         <h3>
           Demo Two's Displaced Element
         </h3>
@@ -18,32 +14,34 @@ var AppendedToNodeInner = React.createClass({
         </p>
         <p>
           And I still update correctly.
-          You've clicked "increment demo-two displaced number" {this.props.number} time(s).
+          You've clicked "increment demo-two displaced number"
+          {' '}
+          {this.props.number}
+          {' '}
+          time(s).
         </p>
       </div>
-    )
-  },
-});
+    );
+  }
+};
 
-var AppendedToNode = displace(AppendedToNodeInner, { renderTo: '#demo-two-displaced' });
+AppendedToNode = displace(AppendedToNode, { renderTo: '#demo-two-displaced' });
 
-var DemoTwo = React.createClass({
-  getInitialState: function() {
-    return {
-      displacedNumber: 0,
-      displacedMounted: false,
-    };
-  },
+class DemoTwo extends React.Component {
+  state = {
+    displacedNumber: 0,
+    displacedMounted: false
+  };
 
-  toggleDisplaced: function() {
+  toggleDisplaced = () => {
     this.setState({ displacedMounted: !this.state.displacedMounted });
-  },
+  };
 
-  incrementDisplaced: function() {
+  incrementDisplaced = () => {
     this.setState({ displacedNumber: this.state.displacedNumber + 1 });
-  },
+  };
 
-  render: function() {
+  render() {
     return (
       <div>
         <button onClick={this.toggleDisplaced}>
@@ -58,7 +56,7 @@ var DemoTwo = React.createClass({
         />
       </div>
     );
-  },
-});
+  }
+}
 
 ReactDOM.render(<DemoTwo />, document.getElementById('demo-two'));
