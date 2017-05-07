@@ -11,7 +11,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-function displace(Content, options) {
+function displace(WrappedComponent, options) {
   if (!global.document) {
     return function (_React$Component) {
       _inherits(EmptyDisplace, _React$Component);
@@ -50,7 +50,7 @@ function displace(Content, options) {
       }
 
       return _ret = (_temp = (_this2 = _possibleConstructorReturn(this, (_ref = Displaced.__proto__ || Object.getPrototypeOf(Displaced)).call.apply(_ref, [this].concat(args))), _this2), _this2.renderDisplaced = function () {
-        ReactDOM.unstable_renderSubtreeIntoContainer(_this2, React.createElement(Content, _this2.props, _this2.props.children), _this2.container);
+        ReactDOM.unstable_renderSubtreeIntoContainer(_this2, React.createElement(WrappedComponent, _this2.props, _this2.props.children), _this2.container);
       }, _this2.removeDisplaced = function () {
         ReactDOM.unmountComponentAtNode(_this2.container);
       }, _temp), _possibleConstructorReturn(_this2, _ret);
@@ -109,6 +109,7 @@ function displace(Content, options) {
   Displaced.defaultProps = {
     mounted: true
   };
+  Displaced.WrappedComponent = WrappedComponent;
 
 
   return Displaced;

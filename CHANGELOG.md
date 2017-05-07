@@ -1,5 +1,9 @@
 # Changelog
 
+## Head
+
+- Add `WrappedComponent` static property.
+
 ## 2.1.4
 
 - Introduce `dist/displace.js`, where `src/` now compiles to, since React 15.5+ demands `class`es, so Babel-compilation.

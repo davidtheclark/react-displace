@@ -7,12 +7,13 @@ const mainContainer = document.createElement('div');
 document.body.appendChild(mainContainer);
 
 function mountTestElement() {
-  let AppendedToBody = class AppendedToBody extends React.Component {
+  const AppendedToBodyInner = class AppendedToBodyInner extends React.Component {
     render() {
       return <div id="appended-to-body">status: {this.props.status}</div>;
     }
   };
-  AppendedToBody = displace(AppendedToBody);
+  const AppendedToBody = displace(AppendedToBodyInner);
+  expect(AppendedToBody.WrappedComponent).toBe(AppendedToBodyInner);
 
   class ElementParent extends React.Component {
     state = {

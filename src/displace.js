@@ -3,7 +3,7 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 
-function displace(Content, options) {
+function displace(WrappedComponent, options) {
   if (!global.document) {
     return class EmptyDisplace extends React.Component {
       render() {
@@ -18,6 +18,8 @@ function displace(Content, options) {
     static defaultProps = {
       mounted: true
     };
+
+    static WrappedComponent = WrappedComponent;
 
     componentWillMount() {
       this.container = (() => {
@@ -58,7 +60,7 @@ function displace(Content, options) {
     renderDisplaced = () => {
       ReactDOM.unstable_renderSubtreeIntoContainer(
         this,
-        React.createElement(Content, this.props, this.props.children),
+        React.createElement(WrappedComponent, this.props, this.props.children),
         this.container
       );
     };

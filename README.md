@@ -122,6 +122,16 @@ What ends up rendering should look something like this:
 </div>
 ```
 
+## WrappedComponent
+
+The component that you pass to `displace()` is available on the class it returns as the static property `WrappedComponent`.
+
+```js
+class MyComponent extends React.Component { .. }
+const MyComponentDisplaced = displace(MyComponent);
+MyComponentDisplaced.WrappedComponent === MyComponent; // true
+```
+
 ## Contributing & Development
 
 Please note that this project is released with a Contributor Code of Conduct. By participating in this project you agree to abide by its terms.
