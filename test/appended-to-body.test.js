@@ -1,13 +1,14 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 const TestUtils = require('react-dom/test-utils');
-const displace = require('../dist/displace');
+const displace = require('../src/displace');
 
 const mainContainer = document.createElement('div');
 document.body.appendChild(mainContainer);
 
 function mountTestElement() {
-  const AppendedToBodyInner = class AppendedToBodyInner extends React.Component {
+  const AppendedToBodyInner = class AppendedToBodyInner
+    extends React.Component {
     render() {
       return <div id="appended-to-body">status: {this.props.status}</div>;
     }
@@ -32,9 +33,19 @@ function mountTestElement() {
     render() {
       return (
         <div id="element-parent">
-          <input id="atb-status-changer" onChange={this.changeInput} value={this.state.input} />
-          <button id="atb-toggle-mountedness" onClick={this.toggleMountedness} />
-          <AppendedToBody status={this.state.input} mounted={this.state.displacedMounted} />
+          <input
+            id="atb-status-changer"
+            onChange={this.changeInput}
+            value={this.state.input}
+          />
+          <button
+            id="atb-toggle-mountedness"
+            onClick={this.toggleMountedness}
+          />
+          <AppendedToBody
+            status={this.state.input}
+            mounted={this.state.displacedMounted}
+          />
         </div>
       );
     }
@@ -60,7 +71,9 @@ describe('appended to body', () => {
   });
 
   test('appended-to-body displaced element appended to body', () => {
-    expect(displacedNode.parentNode === document.getElementById('element-parent')).toBeFalsy();
+    expect(
+      displacedNode.parentNode === document.getElementById('element-parent')
+    ).toBeFalsy();
     expect(displacedNode.parentNode.tagName).toBe('DIV');
     expect(displacedNode.parentNode.parentNode).toBe(document.body);
   });
@@ -82,15 +95,21 @@ describe('appended to body', () => {
 
   test('appended-to-body displaced element unmounts and mounts via `mounted` prop', () => {
     expect(document.getElementById('appended-to-body')).toBeTruthy();
-    expect(document.getElementById('appended-to-body').parentNode.parentNode).toBe(document.body);
+    expect(
+      document.getElementById('appended-to-body').parentNode.parentNode
+    ).toBe(document.body);
 
-    const toggleMountednessButton = document.getElementById('atb-toggle-mountedness');
+    const toggleMountednessButton = document.getElementById(
+      'atb-toggle-mountedness'
+    );
     TestUtils.Simulate.click(toggleMountednessButton);
     expect(document.getElementById('appended-to-body')).toBeFalsy();
 
     TestUtils.Simulate.click(toggleMountednessButton);
     expect(document.getElementById('appended-to-body')).toBeTruthy();
-    expect(document.getElementById('appended-to-body').parentNode.parentNode).toBe(document.body);
+    expect(
+      document.getElementById('appended-to-body').parentNode.parentNode
+    ).toBe(document.body);
   });
 
   test('appended-to-body displaced element cleans up its container div when it unmounts', () => {

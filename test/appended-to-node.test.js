@@ -2,7 +2,7 @@ const React = require('react');
 const PropTypes = require('prop-types');
 const ReactDOM = require('react-dom');
 const TestUtils = require('react-dom/test-utils');
-const displace = require('../dist/displace');
+const displace = require('../src/displace');
 
 const mainContainer = document.createElement('div');
 document.body.appendChild(mainContainer);
@@ -52,9 +52,19 @@ function mountTestElement() {
     render() {
       return (
         <div id="element-parent">
-          <input id="atn-status-changer" onChange={this.changeInput} value={this.state.input} />
-          <button id="atn-toggle-mountedness" onClick={this.toggleMountedness} />
-          <AppendedToNode status={this.state.input} mounted={this.state.displacedMounted} />
+          <input
+            id="atn-status-changer"
+            onChange={this.changeInput}
+            value={this.state.input}
+          />
+          <button
+            id="atn-toggle-mountedness"
+            onClick={this.toggleMountedness}
+          />
+          <AppendedToNode
+            status={this.state.input}
+            mounted={this.state.displacedMounted}
+          />
         </div>
       );
     }
@@ -81,8 +91,12 @@ describe('appended to node', () => {
   });
 
   test('appended-to-node displaced element appended to node', () => {
-    expect(displacedNode.parentNode === document.getElementById('element-parent')).toBeFalsy();
-    expect(displacedNode.parentNode).toBe(document.getElementById('append-to-me'));
+    expect(
+      displacedNode.parentNode === document.getElementById('element-parent')
+    ).toBeFalsy();
+    expect(displacedNode.parentNode).toBe(
+      document.getElementById('append-to-me')
+    );
   });
 
   test('appended-to-node displaced element updates state', () => {
@@ -102,19 +116,27 @@ describe('appended to node', () => {
 
   test('appended-to-node displaced element unmounts and mounts via `mounted` prop', () => {
     expect(document.getElementById('appended-to-node')).toBeTruthy();
-    expect(document.getElementById('appended-to-node').parentNode).toBe(document.getElementById('append-to-me'));
+    expect(document.getElementById('appended-to-node').parentNode).toBe(
+      document.getElementById('append-to-me')
+    );
 
-    const toggleMountednessButton = document.getElementById('atn-toggle-mountedness');
+    const toggleMountednessButton = document.getElementById(
+      'atn-toggle-mountedness'
+    );
     TestUtils.Simulate.click(toggleMountednessButton);
     expect(document.getElementById('appended-to-node')).toBeFalsy();
 
     TestUtils.Simulate.click(toggleMountednessButton);
     expect(document.getElementById('appended-to-node')).toBeTruthy();
-    expect(document.getElementById('appended-to-node').parentNode).toBe(document.getElementById('append-to-me'));
+    expect(document.getElementById('appended-to-node').parentNode).toBe(
+      document.getElementById('append-to-me')
+    );
   });
 
   test('appended-to-node displaced component gets context from parent', () => {
     expect(document.getElementById('appended-to-node')).toBeTruthy();
-    expect(document.getElementById('appended-to-node').getAttribute('data-context')).toBe('This is a test');
+    expect(
+      document.getElementById('appended-to-node').getAttribute('data-context')
+    ).toBe('This is a test');
   });
 });

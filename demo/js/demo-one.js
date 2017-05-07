@@ -1,6 +1,6 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
-const displace = require('../../dist/displace');
+const displace = require('../../src/displace');
 
 let AppendedToBody = displace(
   class AppendedToBody extends React.Component {

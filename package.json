@@ -7,7 +7,7 @@
     "demo-bundle": "browserify demo/js -t babelify -o demo/demo-bundle.js",
     "demo-watch": "watchify demo/js -v -d -t babelify -o demo/demo-bundle.js",
     "predemo-dev": "npm run build",
-    "demo-dev": "npm run demo-watch & http-server demo",
+    "start": "npm run demo-watch & http-server demo",
     "lint": "eslint .",
     "format": "prettier --single-quote --write src/*.js test/*.js demo/js/*.js",
     "pretest": "npm run lint && npm run build",
