@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.1
+
+- Ensure npm publication of `dist/`.
+
 ## 2.2.0
 
 - Add `WrappedComponent` static property.
