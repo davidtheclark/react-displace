@@ -1,6 +1,6 @@
 {
   "name": "react-displace",
-  "version": "2.1.4",
+  "version": "2.2.0",
   "description": "A higher order component that displaces your component into a remote region of the DOM",
   "main": "dist/displace.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "start": "npm run demo-watch & http-server demo",
     "lint": "eslint .",
     "format": "prettier --single-quote --write src/*.js test/*.js demo/js/*.js",
-    "pretest": "npm run lint && npm run build",
+    "pretest": "npm run lint",
     "build": "babel src -d dist",
     "jest": "jest",
     "test": "jest",
