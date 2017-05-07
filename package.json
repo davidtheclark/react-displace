@@ -11,7 +11,7 @@
     "lint": "eslint .",
     "format": "prettier --single-quote --write src/*.js test/*.js demo/js/*.js",
     "pretest": "npm run lint && npm run build",
-    "build": "babel src/displace.js > dist/displace.js",
+    "build": "babel src -d dist",
     "jest": "jest",
     "test": "jest",
     "prepublish": "npm run build"
