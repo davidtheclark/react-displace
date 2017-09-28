@@ -100,7 +100,7 @@ describe('appended to node', () => {
   });
 
   test('appended-to-node displaced element updates state', () => {
-    expect(displacedNode.textContent, 'status: nothing');
+    expect(displacedNode.textContent).toBe('status: nothing');
 
     const statusChanger = document.getElementById('atn-status-changer');
     statusChanger.value = 'something';

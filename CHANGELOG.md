@@ -1,5 +1,9 @@
 # Changelog
 
+## Head
+
+- Support for React 16, using `ReactDOM.createPortal` if it's available.
+
 ## 2.2.1
 
 - Ensure npm publication of `dist/`.

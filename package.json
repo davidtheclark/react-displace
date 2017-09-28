@@ -9,12 +9,12 @@
     "predemo-dev": "npm run build",
     "start": "npm run demo-watch & http-server demo",
     "lint": "eslint .",
-    "format": "prettier --single-quote --write src/*.js test/*.js demo/js/*.js",
+    "format": "prettier --write src/*.js test/*.js demo/js/*.js",
     "pretest": "npm run lint",
-    "build": "babel src -d dist",
     "jest": "jest",
     "test": "jest",
-    "prepublish": "npm run build"
+    "build": "babel src -d dist",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -41,16 +41,19 @@
     "eslint": "^3.19.0",
     "eslint-plugin-react": "^6.10.3",
     "http-server": "0.9.0",
-    "jest": "^19.0.2",
+    "jest": "^21.2.1",
     "prettier": "^1.2.2",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "tape": "^4.6.3",
     "watchify": "^3.9.0"
   },
   "peerDependencies": {
-    "react": "0.14.x || ^15.0.0",
-    "react-dom": "0.14.x || ^15.0.0"
+    "react": "0.14.x || ^15.0.0 || ^16.0.0",
+    "react-dom": "0.14.x || ^15.0.0 || ^16.0.0"
+  },
+  "prettier": {
+    "singleQuote": true
   },
   "babel": {
     "presets": [
@@ -62,7 +65,12 @@
     ]
   },
   "jest": {
-    "testRegex": "/test/.*\\.test.js$",
-    "resetMocks": true
+    "clearMocks": true,
+    "testMatch": [
+      "<rootDir>/test/*.test.js"
+    ],
+    "setupFiles": [
+      "<rootDir>/test/jest-setup.js"
+    ]
   }
 }
