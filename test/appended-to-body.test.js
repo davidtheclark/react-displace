@@ -79,7 +79,7 @@ describe('appended to body', () => {
   });
 
   test('appended-to-body displaced element updates state', () => {
-    expect(displacedNode.textContent, 'status: nothing');
+    expect(displacedNode.textContent).toBe('status: nothing');
 
     const statusChanger = document.getElementById('atb-status-changer');
     statusChanger.value = 'something';

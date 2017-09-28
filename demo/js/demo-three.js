@@ -6,19 +6,14 @@ let AppendedToNode = class AppendedToNode extends React.Component {
   render() {
     return (
       <div className="container">
-        <h3>
-          Demo Three's Displaced Element
-        </h3>
+        <h3>Demo Three's Displaced Element</h3>
         <p>
-          I'm appended to a specific node that is passed as a node (not selector string).
+          I'm appended to a specific node that is passed as a node (not selector
+          string).
         </p>
         <p>
-          And I still update correctly.
-          You've clicked "increment demo-three displaced number"
-          {' '}
-          {this.props.number}
-          {' '}
-          time(s).
+          And I still update correctly. You've clicked "increment demo-three
+          displaced number" {this.props.number} time(s).
         </p>
       </div>
     );
