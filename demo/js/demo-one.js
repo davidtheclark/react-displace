@@ -1,25 +1,17 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
-const displace = require('../../dist/displace');
+const displace = require('../../src/displace');
 
 let AppendedToBody = displace(
   class AppendedToBody extends React.Component {
     render() {
       return (
         <div className="container">
-          <h2>
-            Demo One's Displaced Element
-          </h2>
+          <h2>Demo One's Displaced Element</h2>
+          <p>I'm appended to the body rather than my parent React element.</p>
           <p>
-            I'm appended to the body rather than my parent React element.
-          </p>
-          <p>
-            And I still update correctly.
-            You've clicked "increment demo-one displaced number"
-            {' '}
-            {this.props.number}
-            {' '}
-            time(s).
+            And I still update correctly. You've clicked "increment demo-one
+            displaced number" {this.props.number} time(s).
           </p>
         </div>
       );

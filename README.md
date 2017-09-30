@@ -1,6 +1,6 @@
 # react-displace [![Build Status](https://travis-ci.org/davidtheclark/react-displace.svg?branch=master)](https://travis-ci.org/davidtheclark/react-displace)
 
-A higher-order component that displaces *your* component into a remote region of the DOM. When your component mounts, it renders to the `document.body` or to any other arbitrary DOM node, instead of its expected place within the React component tree; but it still maintains its normal life cycle within the tree, mounting, updating, and unmounting as expected.
+A higher-order component that displaces *your* component into a remote region of the DOM. When your component mounts, it renders to the end of `document.body` (or into any specified DOM node), instead of its expected place within the React component tree; but it still maintains its normal life cycle within the tree, mounting, updating, and unmounting as expected.
 
 This is useful when the HTML source order enforced by React's component tree won't serve your purposes. For example: if initialization and props for a modal or an obstructive overlay (e.g. "Loading...") will come from some component deeply nested within you app, but you want to render the modal or overlay as a direct child of `document.body` so that you can easily `position` it and set its `z-index`.
 
@@ -18,22 +18,25 @@ You'll need to be using a bundler like Browserify, Webpack, or Rollup.
 
 ### React Dependency
 
+Version 2.3+ uses React 16's [Portals](https://reactjs.org/docs/portals.html), if available.
+If not, it resorts to the old ways, so is still compatible with previous versions of React.
+
 Version 2+ is compatible with React >=0.14.x.
 
 Version 1+ is compatible with React 0.13.x.
 
 ## Tested Browser Support
 
-Basically IE9+.
+IE9+.
 
 ## Usage
 
-react-displace is a "higher-order component": a function that takes your component as an argument and returns a new component that includes your component wrapped in some special functionality.
+react-displace is a ["higher-order component"](https://facebook.github.io/react/docs/higher-order-components.html): a function that takes your component as an argument and returns a new component that includes your component wrapped in some special functionality.
 
 It has a simple signature:
 
 ```js
-displace(YourComponent[, options])
+const DisplacedComponent = displace(YourComponent[, options]);
 ```
 
 ### Options
@@ -122,13 +125,23 @@ What ends up rendering should look something like this:
 </div>
 ```
 
+## `DisplacedComponent.WrappedComponent`
+
+The component that you pass to `displace()` is available on the class it returns as the static property `WrappedComponent`.
+
+```js
+class MyComponent extends React.Component { .. }
+const MyComponentDisplaced = displace(MyComponent);
+MyComponentDisplaced.WrappedComponent === MyComponent; // true
+```
+
 ## Contributing & Development
 
 Please note that this project is released with a Contributor Code of Conduct. By participating in this project you agree to abide by its terms.
 
 Lint with `npm run lint`.
 
-Test with `npm run test-dev`, which will give you a URL to open in your browser. Look at the console log for TAP output.
+Test with `npm run jest`.
 
 ## Questions with Answers
 

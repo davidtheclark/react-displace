@@ -3,7 +3,10 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 
-function displace(Content, options) {
+// React 16+ supports Portals.
+const canUsePortals = !!ReactDOM.createPortal;
+
+function displace(WrappedComponent, options) {
   if (!global.document) {
     return class EmptyDisplace extends React.Component {
       render() {
@@ -18,6 +21,8 @@ function displace(Content, options) {
     static defaultProps = {
       mounted: true
     };
+
+    static WrappedComponent = WrappedComponent;
 
     componentWillMount() {
       this.container = (() => {
@@ -34,22 +39,25 @@ function displace(Content, options) {
     }
 
     componentDidMount() {
+      if (canUsePortals) return;
       if (this.props.mounted) {
         this.renderDisplaced();
       }
     }
 
     componentDidUpdate(prevProps) {
+      if (canUsePortals) return;
       if (prevProps.mounted && !this.props.mounted) {
-        this.removeDisplaced();
+        ReactDOM.unmountComponentAtNode(this.container);
       } else if (this.props.mounted) {
         this.renderDisplaced();
       }
     }
 
     componentWillUnmount() {
-      this.removeDisplaced();
-
+      if (!canUsePortals) {
+        ReactDOM.unmountComponentAtNode(this.container);
+      }
       if (!options.renderTo) {
         this.container.parentNode.removeChild(this.container);
       }
@@ -58,7 +66,7 @@ function displace(Content, options) {
     renderDisplaced = () => {
       ReactDOM.unstable_renderSubtreeIntoContainer(
         this,
-        React.createElement(Content, this.props, this.props.children),
+        React.createElement(WrappedComponent, this.props, this.props.children),
         this.container
       );
     };
@@ -68,7 +76,13 @@ function displace(Content, options) {
     };
 
     render() {
-      return false;
+      if (!canUsePortals || this.props.mounted === false) {
+        return null;
+      }
+      return ReactDOM.createPortal(
+        React.createElement(WrappedComponent, this.props, this.props.children),
+        this.container
+      );
     }
   }
 

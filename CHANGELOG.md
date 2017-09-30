@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.3.0
+
+- Support for React 16, using `ReactDOM.createPortal` if it's available.
+
+## 2.2.1
+
+- Ensure npm publication of `dist/`.
+
+## 2.2.0
+
+- Add `WrappedComponent` static property.
+
 ## 2.1.4
 
 - Introduce `dist/displace.js`, where `src/` now compiles to, since React 15.5+ demands `class`es, so Babel-compilation.
