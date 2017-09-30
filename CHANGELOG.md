@@ -1,6 +1,6 @@
 # Changelog
 
-## Head
+## 2.3.0
 
 - Support for React 16, using `ReactDOM.createPortal` if it's available.
 

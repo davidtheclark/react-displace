@@ -18,6 +18,9 @@ You'll need to be using a bundler like Browserify, Webpack, or Rollup.
 
 ### React Dependency
 
+Version 2.3+ uses React 16's [Portals](https://reactjs.org/docs/portals.html), if available.
+If not, it resorts to the old ways, so is still compatible with previous versions of React.
+
 Version 2+ is compatible with React >=0.14.x.
 
 Version 1+ is compatible with React 0.13.x.
