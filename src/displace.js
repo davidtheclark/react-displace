@@ -24,7 +24,8 @@ function displace(WrappedComponent, options) {
 
     static WrappedComponent = WrappedComponent;
 
-    componentWillMount() {
+    constructor(props) {
+      super(props);
       this.container = (() => {
         if (!options.renderTo) {
           var result = document.createElement('div');
