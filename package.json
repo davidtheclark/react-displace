@@ -1,7 +1,8 @@
 {
   "name": "react-displace",
   "version": "2.3.0",
-  "description": "A higher order component that displaces your component into a remote region of the DOM",
+  "description":
+    "A higher order component that displaces your component into a remote region of the DOM",
   "main": "dist/displace.js",
   "scripts": {
     "demo-bundle": "browserify demo/js -t babelify -o demo/demo-bundle.js",
@@ -20,10 +21,7 @@
     "type": "git",
     "url": "git+https://github.com/davidtheclark/react-displace.git"
   },
-  "keywords": [
-    "react",
-    "react-component"
-  ],
+  "keywords": ["react", "react-component"],
   "author": "David Clark",
   "license": "MIT",
   "bugs": {
@@ -31,46 +29,40 @@
   },
   "homepage": "https://github.com/davidtheclark/react-displace#readme",
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-eslint": "^8.0.1",
+    "@babel/cli": "^7.6.2",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/preset-env": "^7.5.5",
+    "babel-eslint": "^10.0.3",
     "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "babelify": "^7.3.0",
     "browserify": "^14.3.0",
-    "eslint": "^4.8.0",
+    "eslint": "^6.3.0",
     "eslint-plugin-react": "^7.4.0",
     "http-server": "0.10.0",
     "jest": "^21.2.1",
     "prettier": "^1.2.2",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
     "tape": "^4.6.3",
     "watchify": "^3.9.0"
   },
   "peerDependencies": {
-    "react": "0.14.x || ^15.0.0 || ^16.0.0",
-    "react-dom": "0.14.x || ^15.0.0 || ^16.0.0"
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "prettier": {
     "singleQuote": true
   },
   "babel": {
-    "presets": [
-      "react",
-      "env"
-    ],
-    "plugins": [
-      "transform-class-properties"
-    ]
+    "presets": ["react", "env"],
+    "plugins": ["transform-class-properties"]
   },
   "jest": {
     "clearMocks": true,
-    "testMatch": [
-      "<rootDir>/test/*.test.js"
-    ],
-    "setupFiles": [
-      "<rootDir>/test/jest-setup.js"
-    ]
+    "testMatch": ["<rootDir>/test/*.test.js"],
+    "setupFiles": ["<rootDir>/test/jest-setup.js"]
   }
 }
