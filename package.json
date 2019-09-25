@@ -1,8 +1,7 @@
 {
   "name": "react-displace",
   "version": "2.3.0",
-  "description":
-    "A higher order component that displaces your component into a remote region of the DOM",
+  "description": "A higher order component that displaces your component into a remote region of the DOM",
   "main": "dist/displace.js",
   "scripts": {
     "demo-bundle": "browserify demo/js -t babelify -o demo/demo-bundle.js",
@@ -21,7 +20,10 @@
     "type": "git",
     "url": "git+https://github.com/davidtheclark/react-displace.git"
   },
-  "keywords": ["react", "react-component"],
+  "keywords": [
+    "react",
+    "react-component"
+  ],
   "author": "David Clark",
   "license": "MIT",
   "bugs": {
@@ -40,10 +42,10 @@
     "babelify": "^7.3.0",
     "browserify": "^14.3.0",
     "eslint": "^6.3.0",
-    "eslint-plugin-react": "^7.4.0",
+    "eslint-plugin-react": "^6.10.3",
     "http-server": "0.10.0",
     "jest": "^21.2.1",
-    "prettier": "^1.2.2",
+    "prettier": "^1.16.4",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "tape": "^4.6.3",
@@ -57,12 +59,21 @@
     "singleQuote": true
   },
   "babel": {
-    "presets": ["react", "env"],
-    "plugins": ["transform-class-properties"]
+    "presets": [
+      "react",
+      "env"
+    ],
+    "plugins": [
+      "transform-class-properties"
+    ]
   },
   "jest": {
     "clearMocks": true,
-    "testMatch": ["<rootDir>/test/*.test.js"],
-    "setupFiles": ["<rootDir>/test/jest-setup.js"]
+    "testMatch": [
+      "<rootDir>/test/*.test.js"
+    ],
+    "setupFiles": [
+      "<rootDir>/test/jest-setup.js"
+    ]
   }
 }
