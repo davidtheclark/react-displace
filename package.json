@@ -40,7 +40,7 @@
     "browserify": "^14.3.0",
     "eslint": "^4.8.0",
     "eslint-plugin-react": "^7.4.0",
-    "http-server": "0.10.0",
+    "http-server": "14.1.1",
     "jest": "^21.2.1",
     "prettier": "^1.2.2",
     "react": "^16.0.0",
